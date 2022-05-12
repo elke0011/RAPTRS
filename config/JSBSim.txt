@@ -1,0 +1,4 @@
+  "JSBSim": {
+    "SimFmuPort": "ptySimSoc",
+    "SimFmuBaud": 1500000
+  },

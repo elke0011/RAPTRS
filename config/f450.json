@@ -1,24 +1,69 @@
 {
-  "JSBSim": {
-    "SimFmuPort": "ptySimSoc",
-    "SimFmuBaud": 1500000
-  },
-
   "Sensors": [
-    {"Type": "Time", "Output": "Fmu/Time_us"},
-    {"Type": "InputVoltage", "Output": "Fmu/Voltage/Input_V"},
-    {"Type": "RegulatedVoltage", "Output": "Fmu/Voltage/Regulated_V"},
-    {"Type": "InternalMpu9250", "Output": "Fmu/Mpu9250", "Rotation": [-1,0,0,0,-1,0,0,0,1], "SRD": 19, "DLPF-Bandwidth": "20Hz"},
-    {"Type": "InternalBme280", "Output": "Fmu/Bme280"},
-    {"Type": "Sbus", "Output": "Sbus"},
-    {"Type": "uBlox", "Output": "uBlox", "Uart": 4, "Baud": 115200}
+    {
+      "Type": "Time",
+      "Output": "Fmu/Time_us"
+    },
+    {
+      "Type": "InputVoltage",
+      "Output": "Fmu/Voltage/Input_V"
+    },
+    {
+      "Type": "RegulatedVoltage",
+      "Output": "Fmu/Voltage/Regulated_V"
+    },
+    {
+      "Type": "InternalMpu9250",
+      "Output": "Fmu/Mpu9250",
+      "Rotation": [ -1, 0, 0, 0, -1, 0, 0, 0, 1 ],
+      "SRD": 19,
+      "DLPF-Bandwidth": "20Hz"
+    },
+    {
+      "Type": "InternalBme280",
+      "Output": "Fmu/Bme280"
+    },
+    {
+      "Type": "Sbus",
+      "Output": "Sbus"
+    },
+    {
+      "Type": "uBlox",
+      "Output": "uBlox",
+      "Uart": 4,
+      "Baud": 115200
+    }
   ],
 
   "Effectors": [
-    {"Type": "Motor", "Input": "/Control/cmdFR_nd", "Channel": 0, "Calibration": [900, 1100], "Safed-Command": 0},
-    {"Type": "Motor", "Input": "/Control/cmdAL_nd", "Channel": 1, "Calibration": [900, 1100], "Safed-Command": 0},
-    {"Type": "Motor", "Input": "/Control/cmdFL_nd", "Channel": 2, "Calibration": [900, 1100], "Safed-Command": 0},
-    {"Type": "Motor", "Input": "/Control/cmdAR_nd", "Channel": 3, "Calibration": [900, 1100], "Safed-Command": 0}
+    {
+      "Type": "Motor",
+      "Input": "/Control/cmdFR_nd",
+      "Channel": 0,
+      "Calibration": [ 900, 1100 ],
+      "Safed-Command": 0
+    },
+    {
+      "Type": "Motor",
+      "Input": "/Control/cmdAL_nd",
+      "Channel": 1,
+      "Calibration": [ 900, 1100 ],
+      "Safed-Command": 0
+    },
+    {
+      "Type": "Motor",
+      "Input": "/Control/cmdFL_nd",
+      "Channel": 2,
+      "Calibration": [ 900, 1100 ],
+      "Safed-Command": 0
+    },
+    {
+      "Type": "Motor",
+      "Input": "/Control/cmdAR_nd",
+      "Channel": 3,
+      "Calibration": [ 900, 1100 ],
+      "Safed-Command": 0
+    }
   ],
 
   "Telemetry": {
@@ -42,14 +87,29 @@
 
     "Def": {
       "Standard": [
-        {"Type": "AGL", "Output": "hBaro_m",
-          "Static-Pressure": ["/Sensors/Fmu/Bme280/Pressure_Pa"], "Initialization-Time": 10},
-        {"Type": "Constant", "Output": "vIAS_ms", "Constant": 0.0},
-        {"Type": "EKF15StateINS", "Output": "INS",
-          "Time": "/Sensors/Fmu/Time_us", "GPS": "/Sensors/uBlox", "IMU": "/Sensors/Fmu/Mpu9250"},
-        {"Type": "MinCellVolt", "Output": "MinCellVolt_V",
-          "Inputs": ["/Sensors/Fmu/Voltage/Input_V"],
-          "NumCells": [4]
+        {
+          "Type": "AGL",
+          "Output": "hBaro_m",
+          "Static-Pressure": [ "/Sensors/Fmu/Bme280/Pressure_Pa" ],
+          "Initialization-Time": 10
+        },
+        {
+          "Type": "Constant",
+          "Output": "vIAS_ms",
+          "Constant": 0.0
+        },
+        {
+          "Type": "EKF15StateINS",
+          "Output": "INS",
+          "Time": "/Sensors/Fmu/Time_us",
+          "GPS": "/Sensors/uBlox",
+          "IMU": "/Sensors/Fmu/Mpu9250"
+        },
+        {
+          "Type": "MinCellVolt",
+          "Output": "MinCellVolt_V",
+          "Inputs": [ "/Sensors/Fmu/Voltage/Input_V" ],
+          "NumCells": [ 4 ]
         }
       ]
     }
@@ -76,30 +136,40 @@
     },
 
     "WaypointDef": {
-      "Home": {"Waypoint": [44.725801, -93.075866, 285.2111], "WaypointRef": "WGS84_deg"}
+      "Home": {
+        "Waypoint": [ 44.725801, -93.075866, 285.2111 ],
+        "WaypointRef": "WGS84_deg"
+      }
     },
 
     "RouteDef": {
       "Loiter": {
-        "Type": "CircleHold", "Radius": 400, "Direction": "Left",
-        "Waypoint": [0.0, 0.0, -75], "LeadDist": 60, "HoldDist": 20
+        "Type": "CircleHold",
+        "Radius": 400,
+        "Direction": "Left",
+        "Waypoint": [ 0.0, 0.0, -75 ],
+        "LeadDist": 60,
+        "HoldDist": 20
       },
 
       "Path_1": {
-        "Type": "Waypoints", "LeadDist": 60, "HoldDist": 20,
+        "Type": "Waypoints",
+        "LeadDist": 60,
+        "HoldDist": 20,
         "WaypointList": [
-          [400, 0, -75],
-          [0, 400, -75],
-          [-400, 0, -75],
-          [0, -400, -75] ]
+          [ 400, 0, -75 ],
+          [ 0, 400, -75 ],
+          [ -400, 0, -75 ],
+          [ 0, -400, -75 ]
+        ]
       }
     }
   },
 
   "Control": {
-    "Fmu": ["PilotDirect"],
-    "Baseline": ["PilotRate", "PilotAttitude","PilotAttitudeAltHold"],
-    "Test": ["PilotAttitude", "PilotAttitudeAltHold"],
+    "Fmu": [ "PilotDirect" ],
+    "Baseline": [ "PilotRate", "PilotAttitude" ],
+    "Test": [ "PilotAttitude" ],
 
     "GroupDef": {
       "PilotDirect": { "Pilot": "Direct" },
@@ -110,12 +180,6 @@
       },
       "PilotAttitude": {
         "Pilot": "Pilot-Attitude",
-        "SCAS-Att": "SCAS-Attitude",
-        "SCAS": "SCAS-Rate",
-        "Alloc": "Allocator"
-      },
-      "PilotAttitudeAltHold": {
-        "Pilot": "Pilot-Attitude-AltHold",
         "SCAS-Att": "SCAS-Attitude",
         "SCAS": "SCAS-Rate",
         "Alloc": "Allocator"
@@ -355,33 +419,6 @@
           "Type": "Gain",
           "Input": "/Sensors/Sbus/Channels/7",
           "Output": "refNorm",
-          "Gain": 1.0
-        },
-        {
-          "Type": "Gain",
-          "Input": "/Sensors/Sbus/Channels/3",
-          "Output": "refPhi",
-          "Gain": 0.523599
-        },
-        {
-          "Type": "Gain",
-          "Input": "/Sensors/Sbus/Channels/4",
-          "Output": "refTheta",
-          "Gain": 0.523599
-        },
-        {
-          "Type": "Gain",
-          "Input": "/Sensors/Sbus/Channels/5",
-          "Output": "refYaw",
-          "Gain": 1.0
-        }
-      ],
-
-      "Pilot-Attitude-AltHold": [
-        {
-          "Type": "Gain",
-          "Input": "/Sensors/Sbus/Channels/7",
-          "Output": "refNorm",
           "Gain": 0.604775
         },
         {
@@ -551,7 +588,18 @@
   "Excitation": {
     "Time": "/Sensors/Fmu/Time_us",
     "ExciteDef": {
-      "Vert_Excite": {
+      "NormPulse": {
+        "Level": "SCAS",
+        "Waveforms": [
+          {
+            "Wave": "Pulse",
+            "Signal": "/Control/Test/refNorm",
+            "Start-Time": 1,
+            "Scale-Factor": 0.01
+          }
+        ]
+      },
+      "NormChirp": {
         "Level": "Alloc",
         "Waveforms": [
           {
@@ -562,7 +610,7 @@
           }
         ]
       },
-      "Roll_Alloc": {
+      "RollChirp": {
         "Level": "Alloc",
         "Waveforms": [
           {
@@ -573,7 +621,7 @@
           }
         ]
       },
-      "Pitch_Alloc": {
+      "PitchChirp": {
         "Level": "Alloc",
         "Waveforms": [
           {
@@ -584,7 +632,7 @@
           }
         ]
       },
-      "Yaw_Alloc": {
+      "YawChirp": {
         "Level": "Alloc",
         "Waveforms": [
           {
@@ -656,57 +704,102 @@
         "Duration": 60,
         "FreqStart": 3.14159265359,
         "FreqEnd": 3.14159265359
+      },
+      "Pulse": {
+        "Type": "Pulse",
+        "Duration": 15
       }
     }
   },
 
   "Mission-Manager": {
-    "Soc-Engage-Switch": {"Source": "/Sensors/Sbus/Channels/0", "Gain": 1,
-      "ModeSel": {"Fmu": -2, "Soc": 0}},
-    "Throttle-Safety-Switch": {"Source": "/Sensors/Sbus/Channels/1", "Gain": 1,
-      "ModeSel": {"Safe": -2, "Engage": 0.5}},
-    "Test-Mode-Switch": {"Source": "/Sensors/Sbus/Channels/8", "Gain": 1,
-      "ModeSel": {"Standby": -2, "Arm": -0.5, "Engage": 0.5}},
-    "Test-Select-Switch": {"Source": "/Sensors/Sbus/Channels/9", "Gain": 1,
-      "ModeSel": {"Decrement": -2, "Excite": -0.5, "Increment": 0.5}},
-    "Trigger-Switch": {"Source": "/Sensors/Sbus/Channels/10", "Gain": 1,
-      "ModeSel": {"Standby": -2, "Trigger": 0.0}},
+    "Soc-Engage-Switch": {
+      "Source": "/Sensors/Sbus/Channels/0",
+      "Gain": 1,
+      "ModeSel": {
+        "Fmu": -2,
+        "Soc": 0
+      }
+    },
+    "Throttle-Safety-Switch": {
+      "Source": "/Sensors/Sbus/Channels/1",
+      "Gain": 1,
+      "ModeSel": {
+        "Safe": -2,
+        "Engage": 0.5
+      }
+    },
+    "Test-Mode-Switch": {
+      "Source": "/Sensors/Sbus/Channels/8",
+      "Gain": 1,
+      "ModeSel": {
+        "Standby": -2,
+        "Arm": -0.5,
+        "Engage": 0.5
+      }
+    },
+    "Test-Select-Switch": {
+      "Source": "/Sensors/Sbus/Channels/9",
+      "Gain": 1,
+      "ModeSel": {
+        "Decrement": -2,
+        "Excite": -0.5,
+        "Increment": 0.5
+      }
+    },
+    "Trigger-Switch": {
+      "Source": "/Sensors/Sbus/Channels/10",
+      "Gain": 1,
+      "ModeSel": {
+        "Standby": -2,
+        "Trigger": 0.0
+      }
+    },
 
-    "Baseline-Select-Switch": {"Source": "/Sensors/Sbus/Channels/11", "Gain": 1,
+    "Baseline-Select-Switch": {
+      "Source": "/Sensors/Sbus/Channels/11",
+      "Gain": 1,
       "ControlSel": {
         "PilotRate": -2,
-        "PilotAttitude": -0.5,
-        "PilotAttitudeAltHold": 0.5
-      }},
+        "PilotAttitude": -0.5
+      }
+    },
 
     "Test-Points": [
       {
         "Test-ID": "0",
         "Sensor-Processing": "Standard",
         "Route": "Loiter",
-        "Control": "PilotAttitudeAltHold",
-        "Excitation": "Vert_Excite"
+        "Control": "PilotAttitude",
+        "Excitation": "NormPulse"
       },
       {
         "Test-ID": "1",
         "Sensor-Processing": "Standard",
         "Route": "Loiter",
-        "Control": "PilotAttitudeAltHold",
-        "Excitation": "Roll_Alloc"
+        "Control": "PilotAttitude",
+        "Excitation": "NormChirp"
       },
       {
         "Test-ID": "2",
         "Sensor-Processing": "Standard",
         "Route": "Loiter",
-        "Control": "PilotAttitudeAltHold",
-        "Excitation": "Pitch_Alloc"
+        "Control": "PilotAttitude",
+        "Excitation": "RollChirp"
       },
       {
         "Test-ID": "3",
         "Sensor-Processing": "Standard",
         "Route": "Loiter",
-        "Control": "PilotAttitudeAltHold",
-        "Excitation": "Yaw_Alloc"
+        "Control": "PilotAttitude",
+        "Excitation": "PitchChirp"
+      },
+      {
+        "Test-ID": "4",
+        "Sensor-Processing": "Standard",
+        "Route": "Loiter",
+        "Control": "PilotAttitude",
+        "Excitation": "YawChirp"
       }
     ]
   }

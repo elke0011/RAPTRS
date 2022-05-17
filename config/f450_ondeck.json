@@ -1,9 +1,4 @@
 {
-  "#JSBSim": {
-    "SimFmuPort": "ptySimSoc",
-    "SimFmuBaud": 1500000
-  },
-
   "Sensors": [
     {"Type": "Time", "Output": "Fmu/Time_us"},
     {"Type": "InputVoltage", "Output": "Fmu/Voltage/Input_V"},

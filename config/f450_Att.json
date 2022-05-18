@@ -186,7 +186,6 @@
       "PilotAttitude": {
         "Pilot": "Pilot-Attitude",
         "SCAS-Att": "SCAS-Attitude",
-        "SCAS": "SCAS-Rate",
         "Alloc": "Allocator"
       },
       "Pendulator": {
@@ -448,13 +447,20 @@
 
       "SCAS-Attitude": [
         {
+          "Type": "Gain",
+          "Input": "../refNorm",
+          "Output": "cmdNorm",
+          "Gain": 1.0
+        },
+        
+        {
           "Type": "PID2",
           "Reference": "../refPhi",
           "Feedback": "/Sensor-Processing/Roll_rad",
-          "Output": "refRoll",
-          "Kp": 0.700,
+          "Output": "cmdRoll",
+          "Kp": 2.000,
           "Ki": 0.000,
-          "Kd": 0.150,
+          "Kd": 4.000,
           "dt": 0.02
         },
 
@@ -462,10 +468,21 @@
           "Type": "PID2",
           "Reference": "../refTheta",
           "Feedback": "/Sensor-Processing/Pitch_rad",
-          "Output": "refPitch",
-          "Kp": 0.700,
+          "Output": "cmdPitch",
+          "Kp": 2.000,
           "Ki": 0.000,
-          "Kd": 0.150,
+          "Kd": 4.000,
+          "dt": 0.02
+        },
+
+        {
+          "Type": "PID2",
+          "Reference": "../refYaw",
+          "Feedback": "/Sensors/Fmu/Mpu9250/GyroZ_rads",
+          "Output": "cmdYaw",
+          "Kp": 0.100,
+          "Ki": 0.000,
+          "Kd": 0.005,
           "dt": 0.02
         }
       ],
